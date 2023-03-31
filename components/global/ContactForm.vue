@@ -1,11 +1,14 @@
 <template>
   <form
     name="contact"
-    data-netlify="true"
     method="POST"
     action="/"
     class="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
   >
+    <input type="hidden" name="form-name" value="contact" />
+
     <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
       <svg
         viewBox="0 0 24 24"
