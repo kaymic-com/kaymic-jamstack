@@ -3,6 +3,9 @@ fragment SidebarItemFragment on SidebarItem {
   component
   componentProps
   teleport
+  image {
+    url
+  }
 
   sys {
     id

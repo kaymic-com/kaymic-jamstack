@@ -284,6 +284,7 @@ export type AssetLinkingCollections = {
   entryCollection?: Maybe<EntryCollection>;
   projectCollection?: Maybe<ProjectCollection>;
   settingsCollection?: Maybe<SettingsCollection>;
+  sidebarItemCollection?: Maybe<SidebarItemCollection>;
 };
 
 
@@ -312,6 +313,14 @@ export type AssetLinkingCollectionsProjectCollectionArgs = {
 
 
 export type AssetLinkingCollectionsSettingsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsSidebarItemCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -1268,6 +1277,7 @@ export type SidebarItem = Entry & {
   component?: Maybe<Scalars['String']>;
   componentProps?: Maybe<Scalars['JSON']>;
   contentfulMetadata: ContentfulMetadata;
+  image?: Maybe<Asset>;
   linkedFrom?: Maybe<SidebarItemLinkingCollections>;
   sys: Sys;
   teleport?: Maybe<Scalars['Boolean']>;
@@ -1284,6 +1294,13 @@ export type SidebarItemComponentArgs = {
 /** [See type definition](https://app.contentful.com/spaces/o8imejr6xrko/content_types/sidebarItem) */
 export type SidebarItemComponentPropsArgs = {
   locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/o8imejr6xrko/content_types/sidebarItem) */
+export type SidebarItemImageArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -1324,6 +1341,7 @@ export type SidebarItemFilter = {
   component_not_contains?: InputMaybe<Scalars['String']>;
   component_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  image_exists?: InputMaybe<Scalars['Boolean']>;
   sys?: InputMaybe<SysFilter>;
   teleport?: InputMaybe<Scalars['Boolean']>;
   teleport_exists?: InputMaybe<Scalars['Boolean']>;

@@ -6,7 +6,7 @@ defineProps<{ item: SidebarItem }>()
 <template>
   <ClientOnly v-if="item.teleport && item?.component">
     <Teleport to="#sidebar-teleport">
-      <component :is="item.component" v-bind="item.componentProps" />
+      <component :is="item.component" v-bind="item" />
     </Teleport>
   </ClientOnly>
 
