@@ -1,5 +1,29 @@
+<script setup lang="ts">
+const form = ref<HTMLFormElement>()
+
+const submitForm = async () => {
+  try {
+    const formData = new FormData(form.value)
+    // @ts-ignore
+    const body = new URLSearchParams(formData)
+
+    await $fetch('/forms/contact.html', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    })
+
+    return await navigateTo('/thank-you')
+  } catch (error) {
+    alert('Sorry, something went wrong. Try again later.')
+  }
+}
+</script>
+
 <template>
   <form
+    ref="form"
+    @submit.prevent="submitForm"
     name="contact"
     method="POST"
     data-netlify="true"
