@@ -1,0 +1,10 @@
+fragment SocialPlatformFragment on SocialPlatform {
+  title
+  link
+  svg
+
+  sys {
+    id
+    firstPublishedAt
+  }
+}

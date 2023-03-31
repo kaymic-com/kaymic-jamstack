@@ -1,0 +1,15 @@
+fragment EmployerFragment on Employer {
+  name
+  logo {
+    url
+  }
+  jobTitle
+  startDate
+  endDate
+  note
+
+  sys {
+    id
+    firstPublishedAt
+  }
+}

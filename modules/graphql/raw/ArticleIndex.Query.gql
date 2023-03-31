@@ -1,0 +1,13 @@
+#import "./Article.Fragment.gql"
+
+query ArticleIndex($limit: Int = 10, $skip: Int = 0) {
+  articleCollection(
+    limit: $limit
+    skip: $skip
+    order: sys_firstPublishedAt_DESC
+  ) {
+    items {
+      ...ArticleFragment
+    }
+  }
+}

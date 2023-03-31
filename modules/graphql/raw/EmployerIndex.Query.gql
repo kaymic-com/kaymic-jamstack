@@ -1,0 +1,9 @@
+#import "./Employer.Fragment.gql"
+
+query EmployerIndex {
+  employerCollection(order: startDate_DESC) {
+    items {
+      ...EmployerFragment
+    }
+  }
+}

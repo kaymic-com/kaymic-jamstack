@@ -1,0 +1,45 @@
+#import "./Page.Fragment.gql"
+#import "./SocialPlatform.Fragment.gql"
+#import "./SidebarItem.Fragment.gql"
+
+query {
+  settingsCollection(limit: 1, order: sys_publishedAt_DESC) {
+    items {
+      email
+
+      logo {
+        url
+      }
+
+      navigationCollection {
+        items {
+          ...PageFragment
+        }
+      }
+
+      footerNavigationCollection {
+        items {
+          ...PageFragment
+        }
+      }
+
+      socialPlatformsCollection {
+        items {
+          ...SocialPlatformFragment
+        }
+      }
+
+      sidebarCollection {
+        items {
+          ...SidebarItemFragment
+        }
+      }
+
+      homeImagesCollection {
+        items {
+          url
+        }
+      }
+    }
+  }
+}

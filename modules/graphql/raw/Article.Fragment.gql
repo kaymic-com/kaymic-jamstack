@@ -1,0 +1,11 @@
+fragment ArticleFragment on Article {
+  title
+  slug
+  excerpt
+  # subtitle
+
+  sys {
+    id
+    firstPublishedAt
+  }
+}

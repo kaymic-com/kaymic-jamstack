@@ -1,0 +1,11 @@
+fragment SidebarItemFragment on SidebarItem {
+  title
+  component
+  componentProps
+  teleport
+
+  sys {
+    id
+    firstPublishedAt
+  }
+}

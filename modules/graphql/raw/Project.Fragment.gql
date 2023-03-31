@@ -1,0 +1,13 @@
+fragment ProjectFragment on Project {
+  title
+  link
+  image {
+    url
+  }
+  description
+
+  sys {
+    id
+    firstPublishedAt
+  }
+}

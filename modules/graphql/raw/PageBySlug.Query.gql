@@ -1,0 +1,20 @@
+#import "./Page.Fragment.gql"
+#import "./SidebarItem.Fragment.gql"
+
+query PageBySlug($slug: String!) {
+  pageCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...PageFragment
+
+      body
+
+      sidebarCollection {
+        items {
+          ...SidebarItemFragment
+        }
+      }
+      sidebarReplace
+      sidebarAppend
+    }
+  }
+}

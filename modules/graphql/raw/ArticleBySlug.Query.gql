@@ -1,0 +1,11 @@
+#import "./Article.Fragment.gql"
+
+query ArticleBySlug($slug: String!) {
+  articleCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      ...ArticleFragment
+
+      body
+    }
+  }
+}

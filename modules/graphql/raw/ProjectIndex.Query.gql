@@ -1,0 +1,13 @@
+#import "./Project.Fragment.gql"
+
+query ProjectIndex($limit: Int = 10, $skip: Int = 0) {
+  projectCollection(
+    limit: $limit
+    skip: $skip
+    order: sys_firstPublishedAt_DESC
+  ) {
+    items {
+      ...ProjectFragment
+    }
+  }
+}

@@ -1,0 +1,9 @@
+#import "./SocialPlatform.Fragment.gql"
+
+query SocialPlatformIndex {
+  socialPlatformCollection {
+    items {
+      ...SocialPlatformFragment
+    }
+  }
+}
