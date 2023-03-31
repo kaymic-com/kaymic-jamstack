@@ -25,6 +25,10 @@ const { sidebarItems, sidebarReplace, sidebarAppend } = useSidebar(
       class="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400"
     />
 
+    <template #lg:pre-sidebar>
+      <ProjectList />
+    </template>
+
     <template #sidebar>
       <SidebarItem
         v-if="sidebarAppend"
@@ -40,11 +44,5 @@ const { sidebarItems, sidebarReplace, sidebarAppend } = useSidebar(
         :item="item"
       />
     </template>
-  </NuxtLayout>
-
-  <NuxtLayout name="body">
-    <div class="mt-16 sm:mt-20">
-      <ProjectList />
-    </div>
   </NuxtLayout>
 </template>
