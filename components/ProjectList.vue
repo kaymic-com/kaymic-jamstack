@@ -24,7 +24,7 @@ const { data: projects } = await useAsyncData<Project[]>(url.value, () =>
       >
         <div
           :style="{
-            backgroundImage: `url(${project.image?.url})`,
+            backgroundImage: `url(${project.image?.url}?w=200)`,
           }"
           class="bg-cover bg-left-top w-11/12 rounded-full aspect-square"
         ></div>
