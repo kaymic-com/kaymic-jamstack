@@ -1,9 +1,10 @@
 export default defineEventHandler(async (event) => {
   const { settingsCollection } = await graphqlClient({
-    query: useRuntimeConfig().public.graphql['Settings.Query.gql'],
-  })
+    key: "Settings.Query.gql",
+    query: useRuntimeConfig().public.graphql["Settings.Query.gql"],
+  });
 
-  const [settings] = settingsCollection?.items ?? []
+  const [settings] = settingsCollection?.items ?? [];
 
-  return settings!
-})
+  return settings!;
+});

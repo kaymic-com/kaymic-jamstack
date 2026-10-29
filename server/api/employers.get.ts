@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
   const { employerCollection } = await graphqlClient({
-    query: useRuntimeConfig().public.graphql['EmployerIndex.Query.gql'],
-  })
+    key: "EmployerIndex.Query.gql",
+    query: useRuntimeConfig().public.graphql["EmployerIndex.Query.gql"],
+  });
 
-  return employerCollection?.items ?? []
-})
+  return employerCollection?.items ?? [];
+});
