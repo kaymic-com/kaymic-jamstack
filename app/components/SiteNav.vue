@@ -27,12 +27,12 @@ const items = computed<NavigationMenuItem[]>(
     <template #title>
       <UColorModeImage
         :dark="`/images/logo.png`"
-        :light="`/images/logo.png`"
+        :light="`/images/logo-light.png`"
         class="h-6 w-auto"
       />
     </template>
 
-    <UNavigationMenu :items="items" />
+    <UNavigationMenu :items="items" variant="link" />
 
     <template #right>
       <UColorModeButton />
@@ -47,6 +47,10 @@ const items = computed<NavigationMenuItem[]>(
           aria-label="GitHub"
         />
       </UTooltip>
+    </template>
+
+    <template #body>
+      <UNavigationMenu :items="items" orientation="vertical" class="-mx-2.5" />
     </template>
   </UHeader>
 </template>

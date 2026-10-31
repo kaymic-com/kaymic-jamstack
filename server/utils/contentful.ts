@@ -6,6 +6,10 @@ import {
 } from "contentful";
 import { H3Event } from "h3";
 
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never;
+
 export const useContentful = (params?: CreateClientParams) => {
   const config = (): CreateClientParams => {
     if (params) return params;
@@ -24,12 +28,12 @@ export const useContentful = (params?: CreateClientParams) => {
 
   const getEntries = async <T extends EntrySkeletonType>(
     contentType: string,
-    query: EntriesQueries<T, undefined> = {},
+    query: DistributiveOmit<EntriesQueries<T, undefined>, "content_type"> = {},
   ) => {
     const response = await client.getEntries<T>({
-      content_type: contentType,
       ...query,
-    });
+      content_type: contentType,
+    } as EntriesQueries<T, undefined>);
 
     return response.items;
   };
@@ -53,6 +57,8 @@ export const useContentful = (params?: CreateClientParams) => {
       // @ts-ignore
       "fields.slug": slug,
       limit: 1,
+      // page -> sidebar items -> image asset
+      include: 2,
     });
 
     return response[0];

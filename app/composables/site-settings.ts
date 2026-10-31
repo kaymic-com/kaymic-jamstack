@@ -1,17 +1,10 @@
-import type { TypeSettings } from "#shared/types/contentful";
+import type { SettingsEntry } from "#shared/types/entries";
 
-type SettingsResponse = TypeSettings<"WITHOUT_UNRESOLVABLE_LINKS", string>;
-
+/** Reads the settings loaded by `plugins/site-settings.ts`. */
 export const useSiteSettings = () => {
-  const settings = useState<SettingsResponse["fields"] | undefined>(
+  const settings = useState<SettingsEntry["fields"] | undefined>(
     "site-settings",
-    () => undefined,
   );
-
-  callOnce(async () => {
-    const data = await $fetch<SettingsResponse | undefined>(`/api/v1/settings`);
-    settings.value = data?.fields;
-  });
 
   const logo = computed(() => settings.value?.logo);
 

@@ -10,6 +10,7 @@ export default defineCachedEventHandler(async (event) => {
     limit,
     skip,
     include: 2,
+    order: ["-sys.createdAt"],
   });
 
   for (const article of articles) {
