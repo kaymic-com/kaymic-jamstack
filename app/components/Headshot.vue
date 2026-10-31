@@ -13,7 +13,7 @@ const size = computed(() => assetSize(asset.value));
   <div class="relative mx-auto w-full max-w-xs lg:max-w-none">
     <div
       aria-hidden="true"
-      class="absolute inset-0 -rotate-6 rounded-3xl bg-linear-to-br from-primary to-secondary opacity-50 blur-2xl"
+      class="absolute inset-0 -rotate-6 rounded-3xl bg-linear-to-br from-primary to-secondary opacity-25 blur-2xl"
     />
 
     <img

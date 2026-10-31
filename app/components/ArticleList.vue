@@ -49,7 +49,7 @@ const posts = computed(() =>
       <!-- articles without a cover image get a generated one -->
       <template v-if="!post.image" #header>
         <div
-          class="relative flex h-full items-center justify-center overflow-hidden bg-linear-to-br from-primary/30 via-elevated to-secondary/30"
+          class="relative flex h-full items-center justify-center overflow-hidden bg-linear-to-br from-primary/15 via-elevated to-secondary/15"
         >
           <UIcon name="i-lucide-code-xml" class="size-12 text-highlighted/70" />
         </div>

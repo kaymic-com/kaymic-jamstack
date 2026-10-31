@@ -38,9 +38,9 @@ const size = computed(() => assetSize(props.project.fields.image));
         <div
           class="flex items-center gap-1.5 border-b border-default bg-elevated px-3 py-2"
         >
-          <span class="size-2 rounded-full bg-error/70" />
-          <span class="size-2 rounded-full bg-warning/70" />
-          <span class="size-2 rounded-full bg-success/70" />
+          <span class="size-2 rounded-full bg-accented" />
+          <span class="size-2 rounded-full bg-accented" />
+          <span class="size-2 rounded-full bg-accented" />
           <span class="ml-2 truncate font-mono text-[11px] text-muted">
             {{ host }}
           </span>

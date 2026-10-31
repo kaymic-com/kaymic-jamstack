@@ -8,7 +8,7 @@
 
   --animate-float: float 8s ease-in-out infinite;
   --animate-drift: drift 22s ease-in-out infinite alternate;
-  --animate-shimmer: shimmer 7s linear infinite;
+  --animate-shimmer: shimmer 16s linear infinite;
   --animate-blink: blink 1s steps(2, start) infinite;
 
   @keyframes float {
@@ -43,19 +43,19 @@
   }
 }
 
-/* Brand palette: acid "volt" lime */
+/* Brand palette: muted gold, derived from the logo mark (#f8c028) */
 @theme static {
-  --color-volt-50: #fbffe6;
-  --color-volt-100: #f4ffc2;
-  --color-volt-200: #eaff8a;
-  --color-volt-300: #dcff4d;
-  --color-volt-400: #ccf721;
-  --color-volt-500: #b0d90d;
-  --color-volt-600: #8aae05;
-  --color-volt-700: #6a8605;
-  --color-volt-800: #546a09;
-  --color-volt-900: #475a0d;
-  --color-volt-950: #243200;
+  --color-gold-50: #fef9e9;
+  --color-gold-100: #fcefc7;
+  --color-gold-200: #f9e19a;
+  --color-gold-300: #f5cf63;
+  --color-gold-400: #efbb2f;
+  --color-gold-500: #d4a01c;
+  --color-gold-600: #b08315;
+  --color-gold-700: #8c6511;
+  --color-gold-800: #6b4d10;
+  --color-gold-900: #4a360f;
+  --color-gold-950: #2a1d08;
 }
 
 :root {
@@ -70,10 +70,10 @@
   --ui-bg-accented: var(--ui-color-neutral-200);
   --ui-text: var(--ui-color-neutral-900);
   --ui-text-highlighted: var(--ui-color-neutral-950);
-  --ui-primary: var(--color-volt-800);
+  --ui-primary: var(--color-gold-700);
 
-  --gradient-a: var(--color-volt-700);
-  --gradient-b: var(--color-pink-600);
+  --gradient-a: var(--color-zinc-900);
+  --gradient-b: var(--color-gold-700);
   --grid-line: color-mix(in oklab, var(--color-zinc-900) 7%, transparent);
 }
 
@@ -84,10 +84,10 @@
   --ui-bg-accented: var(--ui-color-neutral-800);
   --ui-text: var(--ui-color-neutral-100);
   --ui-text-highlighted: var(--ui-color-neutral-50);
-  --ui-primary: var(--color-volt-400);
+  --ui-primary: var(--color-gold-400);
 
-  --gradient-a: var(--color-volt-300);
-  --gradient-b: var(--color-pink-400);
+  --gradient-a: var(--color-zinc-50);
+  --gradient-b: var(--color-gold-400);
   --grid-line: color-mix(in oklab, white 6%, transparent);
 }
 
@@ -98,13 +98,13 @@
   }
 
   ::selection {
-    background: color-mix(in oklab, var(--color-volt-400) 70%, transparent);
-    color: var(--color-volt-950);
+    background: color-mix(in oklab, var(--color-gold-400) 60%, transparent);
+    color: var(--color-gold-950);
   }
 }
 
 @layer components {
-  /* gradient headline text that slowly shimmers */
+  /* tonal headline text (ink to gold) that slowly shimmers */
   .text-gradient {
     background-image: linear-gradient(
       100deg,
