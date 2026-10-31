@@ -11,6 +11,23 @@ export default defineNuxtConfig({
       meta: [
         { name: "google-adsense-account", content: "ca-pub-0047612029589686" },
       ],
+      link: [
+        { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: "/favicon/favicon-32x32.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "16x16",
+          href: "/favicon/favicon-16x16.png",
+        },
+        { rel: "apple-touch-icon", href: "/favicon/apple-touch-icon.png" },
+        { rel: "manifest", href: "/favicon/site.webmanifest" },
+      ],
     },
   },
 
