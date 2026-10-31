@@ -1,12 +1,17 @@
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  generate: {
-    routes: [
-      // additional routes are generated via the route-generator module
-      // '/',
-      // '/_redirects',
-    ],
+  modules: ["@nuxt/ui", "@comark/nuxt"],
+  css: ["~/assets/css/main.css"],
+  compatibilityDate: "2025-07-15",
+  devtools: { enabled: true },
+
+  runtimeConfig: {
+    contentfulSpaceId: "",
+    contentfulAccessToken: "",
+    contentfulEnvironment: "master",
   },
 
-  modules: ['@nuxt/content', '@nuxtjs/tailwindcss'],
-})
+  routeRules: {
+    "/": { prerender: true },
+  },
+});
