@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans: "Geist", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --font-heading: "Bricolage Grotesque", "Geist", sans-serif;
+
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 16s linear infinite;
+  --animate-blink: blink 1s steps(2, start) infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--tilt, 0deg));
+    }
+    50% {
+      transform: translateY(-14px) rotate(calc(var(--tilt, 0deg) * -0.5));
+    }
+  }
+
+  @keyframes drift {
+    from {
+      transform: translate3d(-6%, -4%, 0) scale(1);
+    }
+    to {
+      transform: translate3d(8%, 6%, 0) scale(1.18);
+    }
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+/* Brand palette: muted gold, derived from the logo mark (#f8c028) */
+@theme static {
+  --color-gold-50: #fef9e9;
+  --color-gold-100: #fcefc7;
+  --color-gold-200: #f9e19a;
+  --color-gold-300: #f5cf63;
+  --color-gold-400: #efbb2f;
+  --color-gold-500: #d4a01c;
+  --color-gold-600: #b08315;
+  --color-gold-700: #8c6511;
+  --color-gold-800: #6b4d10;
+  --color-gold-900: #4a360f;
+  --color-gold-950: #2a1d08;
+}
+
+:root {
+  --ui-radius: 0.75rem;
+}
+
+:root,
+.light {
+  --ui-bg: #fbfbf8;
+  --ui-bg-muted: var(--ui-color-neutral-100);
+  --ui-bg-elevated: var(--ui-color-neutral-100);
+  --ui-bg-accented: var(--ui-color-neutral-200);
+  --ui-text: var(--ui-color-neutral-900);
+  --ui-text-highlighted: var(--ui-color-neutral-950);
+  --ui-primary: var(--color-gold-700);
+
+  --gradient-a: var(--color-zinc-900);
+  --gradient-b: var(--color-gold-700);
+  --grid-line: color-mix(in oklab, var(--color-zinc-900) 7%, transparent);
+}
+
+.dark {
+  --ui-bg: var(--ui-color-neutral-950);
+  --ui-bg-muted: var(--ui-color-neutral-900);
+  --ui-bg-elevated: var(--ui-color-neutral-900);
+  --ui-bg-accented: var(--ui-color-neutral-800);
+  --ui-text: var(--ui-color-neutral-100);
+  --ui-text-highlighted: var(--ui-color-neutral-50);
+  --ui-primary: var(--color-gold-400);
+
+  --gradient-a: var(--color-zinc-50);
+  --gradient-b: var(--color-gold-400);
+  --grid-line: color-mix(in oklab, white 6%, transparent);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-gold-400) 60%, transparent);
+    color: var(--color-gold-950);
+  }
+}
+
+@layer components {
+  /* tonal headline text (ink to gold) that slowly shimmers */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--gradient-a),
+      var(--gradient-b) 50%,
+      var(--gradient-a)
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-bottom: 0.12em;
+    animation: var(--animate-shimmer);
+  }
+
+  /* blueprint grid that fades out toward the edges */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      #000 35%,
+      transparent 85%
+    );
+  }
+
+  /* film grain overlay */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .dark .grain::after {
+    filter: invert(1);
+    opacity: 0.08;
+  }
+
+  /* staggered entrance for above-the-fold content: style="--i: n" */
+  .rise {
+    animation: rise 0.9s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+      filter: blur(6px);
+    }
+  }
+
+  /* scroll-linked bar used on articles */
+  .scroll-progress {
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+  }
+
+  .reveal {
+    opacity: 1;
+  }
+}
+
+/* Scroll-driven effects are progressive: browsers without support show the
+   final state, and users who prefer reduced motion never see the animation. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    .scroll-progress {
+      animation: grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+}
+
+@keyframes grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .text-gradient {
+    animation: none;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+}
