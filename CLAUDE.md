@@ -7,8 +7,10 @@ Personal site and blog, served in production at **https://kaymic.com**. Nuxt 4 +
 - Never commit directly to `main`. Every feature or fix gets its own branch and lands through a pull request.
 - Name branches with a conventional prefix: `feat/`, `fix/`, `chore/`, `refactor/`, `docs/`, e.g. `feat/blog-search`.
 - Write commit messages in Conventional Commits style: `feat: …`, `fix: …`, `chore: …`, `refactor: …`, `docs: …`.
-- Open PRs against `main`. Netlify builds a **deploy preview** for every PR; include the preview link in the PR or chat once it's available, and check the preview before asking for a merge.
+- Open PRs against `main`. Netlify builds a **deploy preview** for every PR at `https://deploy-preview-<PR number>--kaymic.netlify.app`. Its result is the `netlify/kaymic/deploy-preview` commit status on the PR. Share the preview link once it's ready, and load the preview yourself to check the change before asking for a merge.
 - Merging: Claude may merge a PR only after the user approves in chat **and** the Netlify preview build has passed. Never merge without that explicit OK.
+- Merge with a regular merge commit (not squash or rebase) to match the repo's history.
+- Cloud sessions can push only to their assigned `claude/...` branch, so the branch-prefix rule can't apply there. Commit messages still follow Conventional Commits. After that branch's PR merges, restart the branch from the latest `main` for the next PR.
 
 ## Contentful
 
@@ -34,3 +36,5 @@ Personal site and blog, served in production at **https://kaymic.com**. Nuxt 4 +
 - `bun install`, `bun run dev`, `bun run build`, `bun run generate`, `bun run preview`.
 - Env vars (see `.env.example`): `NUXT_CONTENTFUL_SPACE_ID`, `NUXT_CONTENTFUL_ACCESS_TOKEN`, `NUXT_CONTENTFUL_ENVIRONMENT`, `NUXT_CONTENTFUL_MANAGEMENT_TOKEN`, `NUXT_CONTENTFUL_PREVIEW_TOKEN`, `NUXT_CONTENTFUL_PREVIEW_SECRET`. Never commit `.env`.
 - There's no test or lint script yet. Verify changes with `bun run build` and the Netlify deploy preview.
+- `nuxt dev` and `bun run build` fail immediately without `NUXT_CONTENTFUL_SPACE_ID` and `NUXT_CONTENTFUL_MANAGEMENT_TOKEN`, because the typegen module requires them. Cloud sessions don't have these keys, so there the Netlify deploy preview is the build check. To preview a UI change before committing, render the components in a separate Nuxt app in the scratchpad with the same `@nuxt/ui` version, `app/assets/css/main.css` and `app/app.config.ts`.
+- Cloud sessions can reach the deploy previews (`*.netlify.app`) and production (`kaymic.com`) for checks.
