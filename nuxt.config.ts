@@ -51,6 +51,9 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    "/": { prerender: true },
+    // rendered on demand and cached on Netlify's CDN, then regenerated in the
+    // background every 10 minutes so new Contentful articles show up without a
+    // redeploy (prerendering froze the article list at build time)
+    "/": { isr: 600 },
   },
 });

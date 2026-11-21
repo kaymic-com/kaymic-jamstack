@@ -1,0 +1,6 @@
+# Build command, publish directory and secrets stay in the Netlify UI.
+[build.environment]
+  # bun.lock uses lockfileVersion 2, which Netlify's default bun (1.3.x) can't
+  # parse: it ignores the lockfile and resolves every dependency from scratch.
+  # Keep this in step with the bun version used locally.
+  BUN_VERSION = "1.4.4"
