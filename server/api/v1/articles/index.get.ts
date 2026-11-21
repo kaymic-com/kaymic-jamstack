@@ -13,9 +13,5 @@ export default defineCachedEventHandler(async (event) => {
     order: ["-sys.createdAt"],
   });
 
-  for (const article of articles) {
-    console.log(article.fields.image?.fields?.file?.url);
-  }
-
   return articles ?? [];
 }, cacheHelper());
